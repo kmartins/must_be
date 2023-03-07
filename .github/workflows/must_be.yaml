@@ -14,7 +14,7 @@ on:
 
 jobs:
   semantic_pull_request:
-    uses: kmartins/workflows/.github/workflows/semantic_pull_request.yaml@v1
+    uses: kmartins/workflows/.github/workflows/semantic_pull_request.yaml@semantic_pr-v1.0.1
     with:
       types: "feat, fix, deps, docs, style, refactor, perf, test, build, ci, revert"
 
