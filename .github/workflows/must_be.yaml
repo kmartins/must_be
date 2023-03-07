@@ -16,8 +16,7 @@ jobs:
   semantic_pull_request:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
     with:
-      types: "fix, feat, deps, docs, style, refactor, perf, tests, build, ci, revert, release"
-      scopes: "must_be"
+      types: "feat, fix, deps, docs, style, refactor, perf, test, build, ci, revert"
 
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
