@@ -404,8 +404,8 @@ void main() {
           expect(
             () => requireThat(date2023).mustBeLessThanOrEqualToToday(),
             throwsConstraintException<LessThanOrEqualToToday>(
-              constraintMessage:
-                  'Must be less than or equal to today, ${formattedDate(today)}',
+              constraintMessage: 'Must be less than or equal to today, '
+                  '${formattedDate(today)}',
             ),
           );
         });
