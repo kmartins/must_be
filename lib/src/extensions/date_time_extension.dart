@@ -35,8 +35,17 @@ extension RequireDate<T extends DateTime> on Require<T?> {
   }
 
   /// Verifies if [DateTime] is greater than today [DateTime.now].
-  void mustBeGreaterThanToday([String? message]) =>
-      mustBeGreaterThan(_currentDateTime, message);
+  void mustBeGreaterThanToday([String? message]) {
+    late final date = _convertedDate(_currentDateTime);
+    mustBe(
+      value == null || _convertedDate(value!).isAfter(date),
+      GreaterThanToday(
+        date,
+        message ??
+            'Must be greater than today, ${_formattedDate(_currentDateTime)}',
+      ),
+    );
+  }
 
   /// Verifies if [DateTime] is greater or equal to other [minDate].
   void mustBeGreaterThanOrEqualTo(DateTime minDate, [String? message]) {
@@ -52,8 +61,18 @@ extension RequireDate<T extends DateTime> on Require<T?> {
   }
 
   /// Verifies if [DateTime] is greater or equal to today [DateTime.now].
-  void mustBeGreaterThanOrEqualToToday([String? message]) =>
-      mustBeGreaterThanOrEqualTo(_currentDateTime, message);
+  void mustBeGreaterThanOrEqualToToday([String? message]) {
+    late final date = _convertedDate(_currentDateTime);
+    mustBe(
+      value == null || _convertedDate(value!).isAfter(date) || _sameDay(date),
+      GreaterThanOrEqualToToday(
+        _currentDateTime,
+        message ??
+            'Must be greater than or equal today, '
+                '${_formattedDate(_currentDateTime)}',
+      ),
+    );
+  }
 
   /// Verifies if [DateTime] is less than other [maxDate].
   void mustBeLessThan(DateTime maxDate, [String? message]) {
@@ -68,8 +87,17 @@ extension RequireDate<T extends DateTime> on Require<T?> {
   }
 
   /// Verifies if [DateTime] is less than today [DateTime.now].
-  void mustBeLessThanToday([String? message]) =>
-      mustBeLessThan(_currentDateTime, message);
+  void mustBeLessThanToday([String? message]) {
+    late final date = _convertedDate(_currentDateTime);
+    mustBe(
+      value == null || _convertedDate(value!).isBefore(date),
+      LessThanToday(
+        _currentDateTime,
+        message ??
+            'Must be less than today, ${_formattedDate(_currentDateTime)}',
+      ),
+    );
+  }
 
   /// Verifies if [DateTime] is less or equal to other [maxDate].
   void mustBeLessThanOrEqualTo(DateTime maxDate, [String? message]) {
@@ -84,8 +112,18 @@ extension RequireDate<T extends DateTime> on Require<T?> {
   }
 
   /// Verifies if [DateTime] is less or equal to other [DateTime].
-  void mustBeLessThanOrEqualToToday([String? message]) =>
-      mustBeLessThanOrEqualTo(_currentDateTime, message);
+  void mustBeLessThanOrEqualToToday([String? message]) {
+    late final date = _convertedDate(_currentDateTime);
+    mustBe(
+      value == null || _convertedDate(value!).isBefore(date) || _sameDay(date),
+      LessThanOrEqualToToday(
+        _currentDateTime,
+        message ??
+            'Must be less than or equal to today, '
+                '${_formattedDate(_currentDateTime)}',
+      ),
+    );
+  }
 
   /// Verifies if [DateTime] is the same day that [sameDay].
   void mustBeSameDay(DateTime sameDay, [String? message]) => mustBe(
@@ -97,8 +135,15 @@ extension RequireDate<T extends DateTime> on Require<T?> {
       );
 
   /// Verifies if [DateTime] is the same that today [DateTime.now];
-  void mustBeSameToday([String? message]) =>
-      mustBeSameDay(_currentDateTime, message);
+  void mustBeSameToday([String? message]) => mustBe(
+        _sameDay(_currentDateTime),
+        SameToday(
+          _currentDateTime,
+          message ??
+              'Must be the same date as the today, '
+                  '${_formattedDate(_currentDateTime)}',
+        ),
+      );
 
   /// Verifies if [DateTime] is not the same day that [sameDay].
   void mustBeNotSameDay(DateTime sameDay, [String? message]) => mustBe(
@@ -111,6 +156,13 @@ extension RequireDate<T extends DateTime> on Require<T?> {
       );
 
   /// Verifies if [DateTime] is not the same that today [DateTime.now];
-  void mustBeNotSameToday([String? message]) =>
-      mustBeNotSameDay(_currentDateTime, message);
+  void mustBeNotSameToday([String? message]) => mustBe(
+        value == null || !_sameDay(_currentDateTime),
+        NotSameToday(
+          _currentDateTime,
+          message ??
+              'Must be not the same date as the today, '
+                  '${_formattedDate(_currentDateTime)}',
+        ),
+      );
 }
