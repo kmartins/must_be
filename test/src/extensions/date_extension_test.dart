@@ -90,12 +90,13 @@ void main() {
             'then an exception is thrown', () {
           expect(
             () => requireThat(date2021).mustBeGreaterThanToday(),
-            throwsConstraintException<GreaterThan>(),
+            throwsConstraintException<GreaterThanToday>(),
           );
           expect(
             () => requireThat(date2021).mustBeGreaterThanToday(),
-            throwsConstraintException<GreaterThan>(
-              constraintMessage: 'Must be greater than ${formattedDate(today)}',
+            throwsConstraintException<GreaterThanToday>(
+              constraintMessage:
+                  'Must be greater than today, ${formattedDate(today)}',
             ),
           );
         });
@@ -105,9 +106,9 @@ void main() {
             'then an exception is thrown - Custom Message', () {
           expect(
             () => requireThat(date2021)
-                .mustBeGreaterThanToday('must be greater than'),
-            throwsConstraintException<GreaterThan>(
-              constraintMessage: 'must be greater than',
+                .mustBeGreaterThanToday('must be greater than today'),
+            throwsConstraintException<GreaterThanToday>(
+              constraintMessage: 'must be greater than today',
             ),
           );
         });
@@ -196,13 +197,13 @@ void main() {
             'then an exception is thrown', () {
           expect(
             () => requireThat(date2021).mustBeGreaterThanOrEqualToToday(),
-            throwsConstraintException<GreaterThanOrEqualTo>(),
+            throwsConstraintException<GreaterThanOrEqualToToday>(),
           );
           expect(
             () => requireThat(date2020).mustBeGreaterThanOrEqualToToday(),
-            throwsConstraintException<GreaterThanOrEqualTo>(
-              constraintMessage:
-                  'Must be greater than or equal to ${formattedDate(today)}',
+            throwsConstraintException<GreaterThanOrEqualToToday>(
+              constraintMessage: 'Must be greater than or equal today, '
+                  '${formattedDate(today)}',
             ),
           );
         });
@@ -212,10 +213,10 @@ void main() {
             'then an exception is thrown - Custom Message', () {
           expect(
             () => requireThat(date2021).mustBeGreaterThanOrEqualToToday(
-              'must be greater than or equal to',
+              'must be greater than or equal to today',
             ),
-            throwsConstraintException<GreaterThanOrEqualTo>(
-              constraintMessage: 'must be greater than or equal to',
+            throwsConstraintException<GreaterThanOrEqualToToday>(
+              constraintMessage: 'must be greater than or equal to today',
             ),
           );
         });
@@ -291,12 +292,13 @@ void main() {
             'then an exception is thrown', () {
           expect(
             () => requireThat(date2023).mustBeLessThanToday(),
-            throwsConstraintException<LessThan>(),
+            throwsConstraintException<LessThanToday>(),
           );
           expect(
             () => requireThat(today).mustBeLessThanToday(),
-            throwsConstraintException<LessThan>(
-              constraintMessage: 'Must be less than ${formattedDate(today)}',
+            throwsConstraintException<LessThanToday>(
+              constraintMessage:
+                  'Must be less than today, ${formattedDate(today)}',
             ),
           );
         });
@@ -305,9 +307,10 @@ void main() {
             'if the date is greater than or equal to today, '
             'then an exception is thrown - Custom Message', () {
           expect(
-            () => requireThat(today).mustBeLessThanToday('must be less than'),
-            throwsConstraintException<LessThan>(
-              constraintMessage: 'must be less than',
+            () => requireThat(today)
+                .mustBeLessThanToday('must be less than today'),
+            throwsConstraintException<LessThanToday>(
+              constraintMessage: 'must be less than today',
             ),
           );
         });
@@ -396,13 +399,13 @@ void main() {
             'then an exception is thrown', () {
           expect(
             () => requireThat(date2023).mustBeLessThanOrEqualToToday(),
-            throwsConstraintException<LessThanOrEqualTo>(),
+            throwsConstraintException<LessThanOrEqualToToday>(),
           );
           expect(
             () => requireThat(date2023).mustBeLessThanOrEqualToToday(),
-            throwsConstraintException<LessThanOrEqualTo>(
+            throwsConstraintException<LessThanOrEqualToToday>(
               constraintMessage:
-                  'Must be less than or equal to ${formattedDate(today)}',
+                  'Must be less than or equal to today, ${formattedDate(today)}',
             ),
           );
         });
@@ -412,9 +415,9 @@ void main() {
             'then an exception is thrown - Custom Message', () {
           expect(
             () => requireThat(date2023)
-                .mustBeLessThanOrEqualToToday('less or equal'),
-            throwsConstraintException<LessThanOrEqualTo>(
-              constraintMessage: 'less or equal',
+                .mustBeLessThanOrEqualToToday('less or equal today'),
+            throwsConstraintException<LessThanOrEqualToToday>(
+              constraintMessage: 'less or equal today',
             ),
           );
         });
@@ -542,13 +545,13 @@ void main() {
               'then an exception is thrown', () {
             expect(
               () => requireThat(date2021).mustBeSameToday(),
-              throwsConstraintException<SameDay>(),
+              throwsConstraintException<SameToday>(),
             );
             expect(
               () => requireThat(date2023).mustBeSameToday(),
-              throwsConstraintException<SameDay>(
-                constraintMessage:
-                    'Must be the same as the day, ${formattedDate(today)}',
+              throwsConstraintException<SameToday>(
+                constraintMessage: 'Must be the same date as the today, '
+                    '${formattedDate(today)}',
               ),
             );
           });
@@ -557,9 +560,9 @@ void main() {
               'if the date is different as today, '
               'then an exception is thrown - Custom Message', () {
             expect(
-              () => requireThat(date2021).mustBeSameToday('same day'),
-              throwsConstraintException<SameDay>(
-                constraintMessage: 'same day',
+              () => requireThat(date2021).mustBeSameToday('same today'),
+              throwsConstraintException<SameToday>(
+                constraintMessage: 'same today',
               ),
             );
           });
@@ -590,13 +593,13 @@ void main() {
               'then an exception is thrown', () {
             expect(
               () => requireThat(today).mustBeNotSameToday(),
-              throwsConstraintException<NotSameDay>(),
+              throwsConstraintException<NotSameToday>(),
             );
             expect(
               () => requireThat(today).mustBeNotSameToday(),
-              throwsConstraintException<NotSameDay>(
-                constraintMessage:
-                    'Must be not the same as the day, ${formattedDate(today)}',
+              throwsConstraintException<NotSameToday>(
+                constraintMessage: 'Must be not the same date as the today, '
+                    '${formattedDate(today)}',
               ),
             );
           });
@@ -605,10 +608,10 @@ void main() {
               'if the date is the same today, '
               'then an exception is thrown - Custom Message', () {
             expect(
-              () =>
-                  requireThat(today).mustBeNotSameToday('is not the same day'),
-              throwsConstraintException<NotSameDay>(
-                constraintMessage: 'is not the same day',
+              () => requireThat(today)
+                  .mustBeNotSameToday('is not the same today'),
+              throwsConstraintException<NotSameToday>(
+                constraintMessage: 'is not the same today',
               ),
             );
           });
