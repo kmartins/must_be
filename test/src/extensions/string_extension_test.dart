@@ -623,5 +623,101 @@ void main() {
         );
       });
     });
+
+    group('started with', () {
+      test(
+          'if the value is null, '
+          'then an exception will not be thrown', () {
+        String? value;
+        expect(
+          () => requireThat(value).mustBeStartedWith('value'),
+          returnsNormally,
+        );
+      });
+
+      test(
+        'if the String is started with the value, '
+        'then an exception will not be thrown',
+        () => expect(
+          () => requireThat('123').mustBeStartedWith('1'),
+          returnsNormally,
+        ),
+      );
+
+      test(
+          'if the String is not started with the value, '
+          'then an exception is thrown', () {
+        expect(
+          () => requireThat('value').mustBeStartedWith('1'),
+          throwsConstraintException<StartedWith>(),
+        );
+        expect(
+          () => requireThat('value').mustBeStartedWith('lue'),
+          throwsConstraintException<StartedWith>(
+            constraintMessage: 'Must be started with lue',
+          ),
+        );
+      });
+
+      test(
+          'if the String is not started with the value, '
+          'then an exception is thrown - Custom Message', () {
+        expect(
+          () => requireThat('value')
+              .mustBeStartedWith('lue', 'must be started with lue'),
+          throwsConstraintException<StartedWith>(
+            constraintMessage: 'must be started with lue',
+          ),
+        );
+      });
+    });
+
+    group('end with', () {
+      test(
+          'if the value is null, '
+          'then an exception will not be thrown', () {
+        String? value;
+        expect(
+          () => requireThat(value).mustBeEndedWith('value'),
+          returnsNormally,
+        );
+      });
+
+      test(
+        'if the String is ended with the value, '
+        'then an exception will not be thrown',
+        () => expect(
+          () => requireThat('123').mustBeEndedWith('23'),
+          returnsNormally,
+        ),
+      );
+
+      test(
+          'if the String is not ended with the value, '
+          'then an exception is thrown', () {
+        expect(
+          () => requireThat('value').mustBeEndedWith('1'),
+          throwsConstraintException<EndedWith>(),
+        );
+        expect(
+          () => requireThat('value').mustBeEndedWith('valu'),
+          throwsConstraintException<EndedWith>(
+            constraintMessage: 'Must be ended with valu',
+          ),
+        );
+      });
+
+      test(
+          'if the String is not ended with the value, '
+          'then an exception is thrown - Custom Message', () {
+        expect(
+          () => requireThat('value')
+              .mustBeEndedWith('valu', 'must be ended with valu'),
+          throwsConstraintException<EndedWith>(
+            constraintMessage: 'must be ended with valu',
+          ),
+        );
+      });
+    });
   });
 }
