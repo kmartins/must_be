@@ -49,3 +49,29 @@ class OnlyNumbers extends Constraint {
   const OnlyNumbers([String? message])
       : super(message ?? 'Must be only numbers');
 }
+
+/// {@template started_with}
+/// Represents the constraint when a [String]
+/// must be started with the [start].
+/// {@endtemplate}
+class StartedWith extends Constraint {
+  /// {@macro started_with}
+  const StartedWith(this.start, [String? message])
+      : super(message ?? 'Must be started with $start');
+
+  /// The value that must be started.
+  final String start;
+}
+
+/// {@template ended_with}
+/// Represents the constraint when a [String]
+/// must be ended with the [end].
+/// {@endtemplate}
+class EndedWith extends Constraint {
+  /// {@macro ended_with}
+  const EndedWith(this.end, [String? message])
+      : super(message ?? 'Must be ended with $end');
+
+  /// The value that must be ended.
+  final String end;
+}

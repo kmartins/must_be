@@ -71,4 +71,16 @@ extension RequireString<T extends String> on Require<T?> {
 
   void _mustMatch(RegExp regex, Constraint constraint) =>
       mustBe(value == null || regex.hasMatch(value!), constraint);
+
+  /// Verifies if the [String] starts with [start].
+  void mustBeStartedWith(String start, [String? message]) => mustBe(
+        value?.startsWith(start) ?? true,
+        StartedWith(start, message),
+      );
+
+  /// Verifies if the [String] ends with [end].
+  void mustBeEndedWith(String end, [String? message]) => mustBe(
+        value?.endsWith(end) ?? true,
+        EndedWith(end, message),
+      );
 }
