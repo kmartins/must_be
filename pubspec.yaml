@@ -1,6 +1,6 @@
 name: must_be
 description: Validate your data similarly to a framework for checking values in tests.
-version: 0.1.0
+version: 0.2.0
 homepage: https://github.com/kmartins/must_be
 repository: https://github.com/kmartins/must_be
 
