@@ -19,6 +19,7 @@ jobs:
     uses: kmartins/workflows/.github/workflows/dart_package.yaml@v1.0.0
     with:
       check_coverage: false
+      upload_coverage_codecov: false
 
   pana:
     uses: kmartins/workflows/.github/workflows/pana.yaml@v1.0.0
