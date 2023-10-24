@@ -1,0 +1,15 @@
+name: Publish Must Be in the pub.dev
+
+on:
+  push:
+    tags:
+      - "must_be-v[0-9]+.[0-9]+.[0-9]+*"
+
+jobs:
+  publish:
+    permissions:
+      id-token: write
+    uses: kmartins/workflows/.github/workflows/publish_dart_package.yaml@v1.0.0
+    with:
+      working_directory: must_be
+      environment: must_be
